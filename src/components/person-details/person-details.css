@@ -1,0 +1,15 @@
+.person-details-info {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    padding: 2.5% 0 2.5% 0;
+    position: relative;
+}
+
+.person-details-info img {
+    border-radius: 25px;
+}
+
+.person-details-list {
+    margin-left: 2%;
+}

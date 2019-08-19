@@ -6,3 +6,18 @@
 .item-list {
     margin-top: 3%;
 }
+
+.item-details {
+    font-size: 1rem;
+    border-radius: 25px;
+    background-color: #303030;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    padding: 2.5% 0 2.5% 2.5%;
+    position: relative;
+}
+
+.item-details h3 {
+    font-size: 1.5rem;
+}

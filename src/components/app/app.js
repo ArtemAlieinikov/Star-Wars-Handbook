@@ -20,7 +20,7 @@ export default class App extends Component {
                 <div className="col-sm-5">
                     <ItemList />
                 </div>
-                <div className="col-sm-7">
+                <div className="col-sm-7 item-details">
                     <PersonDetails />
                 </div>
             </div>
