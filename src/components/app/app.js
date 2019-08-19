@@ -12,12 +12,19 @@ import StarShipDetails from '../starship-details';
 export default class App extends Component {
     render() {
         return (
-        <div>
+        <div className = 'star-wars-handbook-app'>
             <Header />
-            App Text
-            <ItemList />
-            <PersonDetails />
             <RandomPlanet />
+
+            <div className="row item-list">
+                <div className="col-sm-5">
+                    <ItemList />
+                </div>
+                <div className="col-sm-7">
+                    <PersonDetails />
+                </div>
+            </div>
+
             <PlanetDetails />
             <StarShipDetails />
         </div>);

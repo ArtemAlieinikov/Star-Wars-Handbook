@@ -1,0 +1,20 @@
+.random-planet {
+    border-radius: 25px;
+    background-color: #303030;
+}
+
+.random-planet-info {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    padding: 2.5% 0 2.5% 0;
+    position: relative;
+}
+
+.random-planet-info img {
+    border-radius: 25px;
+}
+
+.random-planet-list {
+    margin-left: 2%;
+}
