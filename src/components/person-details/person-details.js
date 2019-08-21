@@ -7,7 +7,7 @@ export default class PersonDetails extends Component {
         return (
         <div className = "person-details">
             <div className = "person-details-info row">
-                <div className="col-sm-3">
+                <div className="col-sm-4">
                     <img src="https://i1.wp.com/manyworlds.space/wp-content/uploads/2019/03/PlanetsCouldLookLikeEyeBalls_1024-2.jpg?ssl=1" alt="Smiley face" height="200" width="150" />
                 </div>
                 <div className="col-sm-5">

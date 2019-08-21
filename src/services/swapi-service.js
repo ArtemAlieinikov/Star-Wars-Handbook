@@ -1,6 +1,6 @@
 // https://swapi.co
 
-class SwapiApiService {
+export default class SwapiApiService {
     _baseRoute = 'https://swapi.co/api';
 
     async getPeople() {
@@ -30,12 +30,11 @@ class SwapiApiService {
     async getResourse(url) {
         const requesterResource = `${this._baseRoute}${url}`
         const result = await fetch(requesterResource);
+
         if (!result.ok) {
             throw new Error(`Could not fetch ${requesterResource}, error ${result.status}`);
         }
 
-        const body = await result.json();
-
-        return body;
+        return await result.json();
     }
 }

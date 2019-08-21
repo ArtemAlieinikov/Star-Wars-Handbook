@@ -16,11 +16,11 @@ export default class App extends Component {
             <Header />
             <RandomPlanet />
 
-            <div className="row item-list">
+            <div className="row detailed-information">
                 <div className="col-sm-5">
                     <ItemList />
                 </div>
-                <div className="col-sm-7 item-details">
+                <div className="col-sm-6 item-details">
                     <PersonDetails />
                 </div>
             </div>

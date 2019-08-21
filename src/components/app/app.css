@@ -3,7 +3,7 @@
     max-width: 1200px;
 }
 
-.item-list {
+.detailed-information {
     margin-top: 3%;
 }
 
@@ -13,7 +13,7 @@
     background-color: #303030;
     width: auto;
     height: auto;
-    margin: 0 auto;
+    margin: 2.5% auto;
     padding: 2.5% 0 2.5% 2.5%;
     position: relative;
 }
