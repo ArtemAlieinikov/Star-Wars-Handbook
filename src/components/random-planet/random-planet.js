@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Spinner from '../spinner';
+
 import SwapiApiService from '../../services/swapi-service';
 
 import './random-planet.css';
@@ -9,10 +11,7 @@ export default class RandomPlanet extends Component {
     swapiService = new SwapiApiService();
 
     state = {
-        name: null,
-        population: null,
-        climate: null,
-        diameter: null
+        planet: {}
     };
 
     constructor() {
@@ -20,26 +19,25 @@ export default class RandomPlanet extends Component {
         this.updatePlanet();
     }
 
+    onPlanetLoaded = (planet) => {
+        this.setState({ planet });
+    };
+
     updatePlanet() {
+        const id = Math.floor(Math.random() * 22 + 2);
         this.swapiService
-        .getPlanet(4)
-        .then((planet) => this.setState(
-            {
-                name: planet.name,
-                population: planet.population,
-                climate: planet.climate,
-                diameter: planet.diameter
-            }));
+        .getPlanet(id)
+        .then(this.onPlanetLoaded);
     }
 
     render() {
-        let { name, population, climate, diameter } = this.state;
+        let { planet: { id, name, population, climate, diameter } } = this.state;
 
         return (
             <div className = "random-planet">
                 <div className = "random-planet-info row">
                     <div className="col-sm-3">
-                        <img src="https://i1.wp.com/manyworlds.space/wp-content/uploads/2019/03/PlanetsCouldLookLikeEyeBalls_1024-2.jpg?ssl=1" alt="Smiley face" height="250" width="250" />
+                        <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={name} height="250" width="250" />
                     </div>
                     <div className="col-sm-5">
                         <h3>{ name }</h3>
