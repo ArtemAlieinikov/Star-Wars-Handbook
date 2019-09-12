@@ -43,9 +43,12 @@
   transform-origin: 80px 82px;
 }
 .lds-eclipse {
-  margin: 0 0 0 45%;
   width: 145px !important;
   height: 145px !important;
   -webkit-transform: translate(-72.5px, -72.5px) scale(0.725) translate(72.5px, 72.5px);
   transform: translate(-72.5px, -72.5px) scale(0.725) translate(72.5px, 72.5px);
+}
+
+.spinner-position {
+  margin: 0 0 0 45%;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Spinner from '../spinner';
+import ErrorIndicator from '../error-indicator';
 
 import SwapiApiService from '../../services/swapi-service';
 
@@ -12,7 +13,8 @@ export default class RandomPlanet extends Component {
 
     state = {
         planet: {},
-        loading: true
+        loading: true,
+        error: false
     };
 
     constructor() {
@@ -20,30 +22,44 @@ export default class RandomPlanet extends Component {
         this.updatePlanet();
     }
 
-    onPlanetLoaded = (planet) => {
-        this.setState(
-        {
-            planet,
+    onPlanetLoadedError = (error) => {
+        this.setState({
+            error: true,
             loading: false
         });
     };
 
+    onPlanetLoaded = (planet) => {
+        this.setState(
+        {
+            planet,
+            loading: false,
+            error: false
+        });
+    };
+
     updatePlanet() {
-        const id = Math.floor(Math.random() * 22 + 2);
+        //const id = Math.floor(Math.random() * 10 + 2);
+        const id = 500000000;
         this.swapiService
-        .getPlanet(id)
-        .then(this.onPlanetLoaded);
+            .getPlanet(id)
+            .then(this.onPlanetLoaded)
+            .catch(this.onPlanetLoadedError);
     }
 
     render() {
-        const { planet, loading } = this.state;
+        const { planet, loading, error } = this.state;
 
-        const componentToShow = loading ? <Spinner /> : <PlanetView planet={ planet }/>
+        const errorMessage  = error ? <ErrorIndicator /> : null;
+        const spinner = loading ? <Spinner /> : null;
+        const content = !(error || loading) ? <PlanetView planet={ planet }/> : null;
 
         return (
             <div className = "random-planet">
                 <div className = "random-planet-info row">
-                    { componentToShow }
+                    { errorMessage }
+                    { spinner }
+                    { content }
                 </div>
             </div>);
     }
