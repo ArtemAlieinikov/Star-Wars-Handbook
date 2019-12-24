@@ -1,12 +1,13 @@
 import React from 'react';
 
-import icon from './images.jpg';
+import './error-indicator.css';
 
 const ErrorIndicator = () => {
     return (
-        <div>
-            <img srs = { icon } alt="death star drone" />
-            <div>This drons have no chill...</div>
+        <div class='error-indicator'>
+            <img src={require('./death-star-error.png')} alt="death star drone" height='150mm' width='150mm'/>
+            <span class='boom'>ERROR</span>
+            <span>This drons have no chill...</span>
         </div>
     );
 }
