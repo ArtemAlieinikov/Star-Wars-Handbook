@@ -21,3 +21,11 @@
 .item-details h3 {
     font-size: 1.5rem;
 }
+
+.button-row {
+    margin: 1rem 0 1rem 0;
+  }
+  
+  .button-row button {
+    margin-right: 1rem;
+  }
