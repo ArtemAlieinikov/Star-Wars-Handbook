@@ -12,12 +12,19 @@ import StarShipDetails from '../starship-details';
 export default class App extends Component {
 
     state = {
-        showRandomPlanet: true
+        showRandomPlanet: true,
+        selectedItemId: null
     }
 
     toggleRandomPlanet = () => {
         this.setState((state) => {
             return { showRandomPlanet: !state.showRandomPlanet }
+        });
+    }
+
+    onItemSelected = (id) => {
+        this.setState({
+            selectedItemId: id
         });
     }
 
@@ -40,10 +47,10 @@ export default class App extends Component {
 
             <div className="row detailed-information">
                 <div className="col-sm-5">
-                    <ItemList />
+                    <ItemList onItemSelected={this.onItemSelected}/>
                 </div>
                 <div className="col-sm-6 item-details">
-                    <PersonDetails />
+                    <PersonDetails personId={this.state.selectedItemId}/>
                 </div>
             </div>
 

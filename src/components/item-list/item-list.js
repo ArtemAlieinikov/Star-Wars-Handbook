@@ -8,7 +8,7 @@ export default class ItemList extends Component {
     swapiServie = new SwapiApiService();
 
     state = {
-        people: null
+        people: null,
     }
 
     componentDidMount() {
