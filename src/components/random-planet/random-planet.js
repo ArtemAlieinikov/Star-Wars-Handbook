@@ -9,7 +9,7 @@ import './random-planet.css';
 
 export default class RandomPlanet extends Component {
     swapiService = new SwapiApiService();
-    intervalId = null;
+
     state = {
         planet: {},
         loading: true,
@@ -18,7 +18,7 @@ export default class RandomPlanet extends Component {
 
     componentDidMount() {
         this.updatePlanet();
-        this.intervalId = setInterval(this.updatePlanet, 2500);
+        this.intervalId = setInterval(this.updatePlanet, 5000);
     }
 
     componentWillUnmount() {
