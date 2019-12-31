@@ -3,17 +3,22 @@ import React, { Component } from 'react';
 import './app.css';
 
 import Header from '../header';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
 import PlanetDetails from '../planet-details';
 import RandomPlanet from '../random-planet';
 import StarShipDetails from '../starship-details';
+import ErrorButton from '../error-button';
+import ErrorIndicator from '../error-indicator';
+import PeoplePage from '../people-page';
+import SwapiApiService from '../../services/swapi-service';
+import ItemList from '../item-list';
+import PersonDetails from '../person-details';
 
 export default class App extends Component {
+    swapiService = new SwapiApiService();
 
     state = {
         showRandomPlanet: true,
-        selectedItemId: null
+        globalError: false
     }
 
     toggleRandomPlanet = () => {
@@ -22,13 +27,16 @@ export default class App extends Component {
         });
     }
 
-    onItemSelected = (id) => {
-        this.setState({
-            selectedItemId: id
-        });
-    }
+    componentDidCatch(error, errorInfo) {
+        console.log(error, errorInfo);
+        this.setState({ globalError: true });
+      }
 
     render() {
+        if (this.state.globalError) {
+            return <ErrorIndicator />
+        }
+
         let randomPlanetWidget = this.state.showRandomPlanet ?
             <RandomPlanet /> :
             null;
@@ -43,11 +51,31 @@ export default class App extends Component {
                     onClick={this.toggleRandomPlanet}>
                     Toggle Random Planet
                 </button>
+                <ErrorButton />
+            </div>
+
+            <PeoplePage />
+
+            <div className="row detailed-information">
+                <div className="col-sm-5">
+                    <ItemList 
+                        onItemSelected={this.onItemSelected}
+                        getData={this.swapiService.getPlanets}
+                        renderItem={({name, population, diameter}) => `${name} ${population} ${diameter}`}
+                    />
+                </div>
+                <div className="col-sm-6 item-details">
+                    <PersonDetails personId={this.state.selectedItemId}/>
+                </div>
             </div>
 
             <div className="row detailed-information">
                 <div className="col-sm-5">
-                    <ItemList onItemSelected={this.onItemSelected}/>
+                    <ItemList 
+                        onItemSelected={this.onItemSelected}
+                        getData={this.swapiService.getStarships}
+                        renderItem={({name, MGLT, model}) => `${name} ${MGLT} ${model}`}
+                    />
                 </div>
                 <div className="col-sm-6 item-details">
                     <PersonDetails personId={this.state.selectedItemId}/>

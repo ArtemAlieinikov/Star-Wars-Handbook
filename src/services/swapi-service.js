@@ -3,36 +3,40 @@
 export default class SwapiApiService {
     _baseRoute = 'https://swapi.co/api';
 
-    async getPeople() {
+    getPeople = async () => {
         const people = await this.getResourse("/people/");
         return people.results.map(this._transformPerson);
     }
 
-    async getPerson(personId) {
+    getPerson = async (personId) => {
         const person = await this.getResourse(`/people/${personId}`);
         return this._transformPerson(person);
     }
 
-    async getPlanets() {
-        const planets =  this.getResourse(`/planets/`);
+    getPlanets = async () => {
+        const planets = await this.getResourse(`/planets/`);
 
-        return planets.result.map(this._transformPlanet);
+        return planets.results.map(this._transformPlanet);
     }
 
-    async getPlanet(planetId) {
+    getPlanet = async (planetId) => {
         const planet = await this.getResourse(`/planets/${planetId}`);
         return this._transformPlanet(planet);
     }
 
-    async getStarships() {
-        return this.getResourse(`/starships/`);
+    getStarships = async () => {
+        const starships = await this.getResourse(`/starships/`);
+
+        return starships.results.map(this._transformStarship);
     }
 
-    async getStarship(starshipId) {
-        return this.getResourse(`/starships/${starshipId}`);
+    getStarship = async (starshipId) => {
+        const starship = await this.getResourse(`/starships/${starshipId}`);
+
+        return this._transformStarship(starship.results);
     }
 
-    async getResourse(url) {
+    getResourse = async (url) => {
         const requesterResource = `${this._baseRoute}${url}`
         const result = await fetch(requesterResource);
 
@@ -56,6 +60,16 @@ export default class SwapiApiService {
             population: planet.population,
             climate: planet.climate,
             diameter: planet.diameter
+        }
+    }
+
+    _transformStarship = (starship) => {
+        return {
+            id: this._extractId(starship),
+            name: starship.name,
+            model: starship.model,
+            maxSpeed: starship.max_atmosphering_speed,
+            MGLT: starship.MGLT
         }
     }
 

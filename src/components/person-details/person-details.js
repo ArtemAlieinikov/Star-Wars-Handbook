@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './person-details';
 import SwapiApiService from '../../services/swapi-service';
 import Spinner from '../spinner';
+import ErrorButton from '../error-button';
 
 export default class PersonDetails extends Component {
     swapiService = new SwapiApiService();
@@ -60,6 +61,7 @@ export default class PersonDetails extends Component {
                         <li className="list-group-item">Birth year: {birthYear}</li>
                         <li className="list-group-item">Eye color: {eyeColor}</li>
                     </ul>
+                    <ErrorButton />
                 </div>
             </div>
         </div>);
